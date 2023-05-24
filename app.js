@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors")
 const app = express();
 const pitchController = require("./controllers/pitchController.js")
+const investmentController = require("./controllers/investmentController.js")
 
 app.use(cors());
 app.use(express.json());
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 })
 
 app.use('/pitches', pitchController)
+app.use('/investments', investmentController)
 
 app.get("*", (req, res) => {
   console.log("404!");

@@ -2,21 +2,30 @@ const express = require("express");
 const pitches = express.Router();
 
 const { 
-    getAllPitches,
+    getPaginatedPitches,
     getPitch, 
     createPitch, 
     updatePitch, 
-    deletePitch } = require('../queries/pitches.js')
+    deletePitch} = require('../queries/pitches.js')
 
-// index
-pitches.get("/", async (req, res) => {
-    const { error, result } = await getAllPitches();
+
+
+
+
+
+
+// paginated index
+pitches.get("/", async (req, res) => { 
+    const pageNumber = req.query.page
+    console.log(req.query)
+    const { error, result } = await getPaginatedPitches(pageNumber);
     if (error) {
       res.status(500).json({ error: "server error" });
     } else {
       res.status(200).json(result);
     }
   });
+  
 
   // show
 pitches.get("/:id", async (req, res) => {

@@ -1,8 +1,15 @@
 const db = require('../db/dbConfig.js');
 
-const getAllPitches = async () => {
+//
+
+
+
+const getPaginatedPitches = async (pageNumber) => {
+  let pitchesPerPage = 20
+  let offset = pitchesPerPage * Number(pageNumber)
+  console.log(offset)
     try {
-        const result = await db.any("SELECT * FROM pitches");
+        const result = await db.any(`SELECT * FROM pitches LIMIT ${pitchesPerPage} OFFSET ${offset}`);
         return { result };
       } catch (error) {
         return { error };
@@ -60,7 +67,7 @@ const getPitch = async (id) => {
   };
 
 module.exports = {
-    getAllPitches,
+    getPaginatedPitches,
     getPitch,
     createPitch,
     deletePitch,
