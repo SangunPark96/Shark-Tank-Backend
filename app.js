@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors")
 const app = express();
 const pitchController = require("./controllers/pitchController.js")
-const investmentController = require("./controllers/investmentController.js")
+const investmentController = require("./controllers/InvestmentController.js")
 
 app.use(cors());
 app.use(express.json());
